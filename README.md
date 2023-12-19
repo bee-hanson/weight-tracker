@@ -29,3 +29,6 @@ Open iOS simulator or Android Emulator
 
 Enter 'flutter run' in the terminal 
 
+
+# screen recordings
+https://drive.google.com/file/d/10h-hK_UGJKSYyZ7eyNtr3moGU_GNomrp/view?usp=sharing
