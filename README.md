@@ -31,4 +31,4 @@ Enter 'flutter run' in the terminal
 
 
 # screen recordings
-https://drive.google.com/file/d/10h-hK_UGJKSYyZ7eyNtr3moGU_GNomrp/view?usp=sharing
+https://drive.google.com/drive/folders/1iZZ4mhVg1xKOd6HmwI5ljHFFAaJ5MfhB?usp=drive_link
