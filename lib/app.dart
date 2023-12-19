@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:weight_tracker/constants/routes.dart';
 import 'package:weight_tracker/services/auth_service.dart';
-import 'package:weight_tracker/services/firestore_service.dart';
+import 'package:weight_tracker/services/firestore_weight_service.dart';
 import 'package:weight_tracker/viewmodels/home_viewmodel.dart';
 import 'package:weight_tracker/viewmodels/log_in_viewmodel.dart';
 import 'package:weight_tracker/views/home_view.dart';
@@ -31,14 +31,14 @@ class App extends StatelessWidget {
     final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     getIt.registerLazySingleton<AuthService>(() => AuthService(firebaseAuth));
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-    getIt.registerLazySingleton<FirestoreService>(
-        () => FirestoreService(firestore, getIt<AuthService>()));
+    getIt.registerLazySingleton<FirestoreWeightService>(
+        () => FirestoreWeightService(firestore, getIt<AuthService>()));
 
     // viewmodels
     getIt.registerFactory<LogInViewmodel>(
         () => LogInViewmodel(getIt<AuthService>()));
-    getIt.registerFactory<HomeViewmodel>(
-        () => HomeViewmodel(getIt<AuthService>(), getIt<FirestoreService>()));
+    getIt.registerFactory<HomeViewmodel>(() =>
+        HomeViewmodel(getIt<AuthService>(), getIt<FirestoreWeightService>()));
 
     // views
     getIt.registerFactory<HomeView>(() => HomeView(getIt<HomeViewmodel>()));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:weight_tracker/constants/routes.dart';
 import 'package:weight_tracker/models/weight_model.dart';
@@ -59,9 +60,25 @@ class HomeView extends StatelessWidget {
                           final weight =
                               Provider.of<List<WeightModel>>(context)[index];
                           return Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(
-                                '${weight.createDate.toString()} - ${weight.weight.toString()}'),
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Builder(builder: (context) {
+                              return Container(
+                                padding: const EdgeInsets.all(24.0),
+                                decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: Colors.deepPurple),
+                                    borderRadius: BorderRadius.circular(24.0)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(DateFormat('yyyy-MM-dd HH:mm:ss')
+                                        .format(weight.createDate)),
+                                    Text('${weight.weight.toString()} lbs'),
+                                  ],
+                                ),
+                              );
+                            }),
                           );
                         }),
                   ),
@@ -76,7 +93,16 @@ class HomeView extends StatelessWidget {
         builder: (context) => Dialog(
                 child: Padding(
               padding: const EdgeInsets.all(24.0),
-              child: Text(errorMessage),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(errorMessage),
+                  const SizedBox(height: 12.0),
+                  ElevatedButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('Okay'))
+                ],
+              ),
             )));
   }
 }
